@@ -42,7 +42,7 @@
     
 //    return;
 
-    NSString *path = @"/Users/xuanyuan/Desktop/all.plist";
+    NSString *path = @"/Users/xuanyuan/ssq_data/all.plist";
     NSArray *arr = [NSArray arrayWithContentsOfFile:path];
 //    NSLog(@"=%@", arr);
 
@@ -51,7 +51,7 @@
     _dataArr = [NSMutableArray new];
     
     
-    for (NSDictionary *dic in arr) {
+    for (NSDictionary *dic in arr.reverseObjectEnumerator) {
         SSQModel *model = [SSQModel yy_modelWithJSON:dic];
 
         NSString *red1;
@@ -225,7 +225,7 @@
                           };
      
     
-     [HttpTool getWithUrl:@"http://localhost:8181/ssq/api/ssq/add" paras:dic success:^(id result) {
+     [HttpTool getWithUrl:@"http://localhost:8080/ssq/api/ssq/add" paras:dic success:^(id result) {
          NSLog(@"index=%d",index);
          [self goHttp];
     } failure:^(NSString *error) {
